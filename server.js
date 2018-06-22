@@ -1,7 +1,7 @@
 // initialisation du server
 const express = require('express');
 const app = express();
-var port = 3012;
+var port = 6002;
 // connexion a bdd
 var MongoClient = require('mongodb').MongoClient
     , assert = require('assert');
@@ -22,6 +22,10 @@ app.get('/template', function (req, res) {
 //afficher l'index
 app.get('/', function(req,res){
     res.sendFile(__dirname+'/index.html')
+});
+
+app.get('/login', function(req,res){
+    res.sendFile(__dirname+'/formulaire-login.html')
 });
 
 app.get('/get_clients', function(req,res){
