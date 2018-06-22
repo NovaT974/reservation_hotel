@@ -1,3 +1,4 @@
+<!-- modal pour INSERT -->
 <div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="insertModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -11,20 +12,19 @@
         <form class="">
             <div class="form-group">
                 <label for="name-hotel">Nom de l'hôtel</label>
-                <input type="text" class="form-control" id="name-hotel" name="name-hotel" value="" placeholder="Bakoya Hotel Resort & Spa">
+                <input type="text" class="form-control" id="insert-name-hotel" name="name-hotel" value="" placeholder="Bakoya Hotel Resort & Spa">
             </div>
             <div class="form-group">
                 <label for="img-hotel">Image</label>
-                <input type="text" class="form-control" id="img-hotel" name="img-hotel" value="" >
+                <input type="text" class="form-control" id="insert-img-hotel" name="img-hotel" value="" >
             </div>
             <div class="form-group">
                 <label for="mark-hotel">Luxiosité de l'hôtel (en etoiles)</label>
-                <input type="number" class="form-control" id="mark-h" name="mark-hotel" value="" placeholder="4 / 5+" >
-                
+                <input type="number" class="form-control" id="insert-mark-h" name="mark-hotel" value="" placeholder="4 / 5+" >
             </div>
             <div class="form-group">
                 <label for="secteur-hotel">Id secteur</label>
-                <select class="form-control" id="secteur-hotel">
+                <select class="form-control" id="insert-secteur-hotel">
                     <option value="0">Nord</option>
                     <option value="1">Sud</option>
                     <option value="2">Est</option>
@@ -32,6 +32,7 @@
                 </select>
             </div>
         </form>
+        <span id='insert_message'></span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" id="add">Ajouter</button>
@@ -40,7 +41,7 @@
     </div>
   </div>
 </div> 
- 
+<!-- Modal pour UPDATE -->
 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="insertModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -79,9 +80,10 @@
                 </select>
             </div>
         </form>
+        <span id='update_message'></span>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" id="add">Ajouter</button>
+        <button type="button" class="btn btn-success" id="update">Ajouter</button>
         <button type="button" class="btn btn-danger" type="reset" data-dismiss="modal">Annuler</button>
       </div>
     </div>
@@ -95,6 +97,8 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
+    <script src="../../../js/script.js"></script>
 
 <script>
 $('#updateModal').on('show.bs.modal', function (event) {
