@@ -1,0 +1,63 @@
+<% include ./partials/head.ejs %>
+<body>
+    <% include ./partials/header.ejs %>
+    <!--formulaire-->
+    <div class="container-fluid form p-5">
+        <div class="container">
+            <form class="row col-md-8 mx-auto mt-5 mb-5 bg-form p-3">
+                <div class="col-md-12" id="status"></div>
+                <div class="form-group col-md-6">
+                    <label for="arrive">Date d'arrivé</label>
+                    <input type="date" name="arrive" id="arrive" class="form-control" placeholder="" aria-describedby="helpId" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="depart">Date de départ</label>
+                    <input type="date" name="depart" id="depart" class="form-control" placeholder="" aria-describedby="helpId" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="nom">Nom & Prénom </label>
+                    <input type="texte" name="nom" id="nom" class="form-control" placeholder="" aria-describedby="helpId" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="selectHotel">Hotel </label>
+                    <select class="form-control id-hotel" id="selectHotel" required>
+                        <% hotel.forEach(function(datas){ %>
+                            <option data-id="<%= datas.id %>" class="test"><%= datas.Nom %></option>
+                        <% }); %>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="carte_bancaire">Carte bancaire</label>
+                    <input type="texte" name="" id="carte_bancaire" class="form-control" placeholder="" aria-describedby="helpId" required>
+                    <input type="hidden" value="" id = "id-client">
+
+                </div>
+                <div class="m-3">
+                    <button id="reserved" class="btn btn-dark">Réserver </button>
+                    <button type="reset" id="reset" style="visibility: hidden;">reset</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    </header>
+    <!--MAIN WHITH HOTELS-->
+    <div class="container">
+        <div class="row">
+            <div id="hostel_listing" class="col-md-12 mt-5 mb-5">
+                <!-- ICI LISTE DES HOTELS A AFFICHER EN JAVASCRIPT (en tableau ou autre)-->
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div id="promo_hotel">
+                    <!-- ICI LISTE 3 HOTELS QUI OFFRENT DES PROMOS -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ./partials/footer.ejs %>
+</body>

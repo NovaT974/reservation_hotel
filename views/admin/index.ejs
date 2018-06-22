@@ -1,0 +1,35 @@
+<!-- ajout de la partie head de la structure -->
+<% include head.ejs %>
+<body>
+    <!-- ajout de la partie menu et de la barre de recherche de la structure -->
+    <% include header.ejs %>
+    <!-- Création du tableau des hotels -->
+    <div class="text-center m-5">    
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertModal">Add user</button>
+    </div>
+   <table class="table w-50 mt-5 text-center">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">id</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Images</th>
+        <th scope="col">Contact</th>
+      </tr>
+    </thead>
+    <tbody>
+    <!-- Boucle d'ajout des hotels -->
+        <% hotels.forEach(function(hotel){ %>
+            <tr>
+                <th scope="row"><%= hotel.id %></th>
+                <td><%= hotel.Nom %></td>
+                <td><%= hotel.img %></td>
+                <td><a data-toggle="modal" data-target="#updateModal" data-objId="<%= hotel._id %>" data-id="<%= hotel.id %>" data-name="<%= hotel.Nom %>" data-img="<%= hotel.img%>"  data-etoiles="<%= hotel.Nb_etoiles%>"  data-secteur="<%= hotel.id_secteur%>"><i class="far fa-edit"></i></a></td>
+                <td><a ><i class="far fa-trash-alt"></i></a></td>
+            </tr>
+        <% }); %>
+    </tbody>
+  </table>
+<!-- ajout de la partie footer de la structure -->
+    <% include footer.ejs %>
+</body>

@@ -1,0 +1,120 @@
+<div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="insertModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="insertModalLabel">Ajout d'un hotel</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="">
+            <div class="form-group">
+                <label for="name-hotel">Nom de l'hôtel</label>
+                <input type="text" class="form-control" id="name-hotel" name="name-hotel" value="" placeholder="Bakoya Hotel Resort & Spa">
+            </div>
+            <div class="form-group">
+                <label for="img-hotel">Image</label>
+                <input type="text" class="form-control" id="img-hotel" name="img-hotel" value="" >
+            </div>
+            <div class="form-group">
+                <label for="mark-hotel">Luxiosité de l'hôtel (en etoiles)</label>
+                <input type="number" class="form-control" id="mark-h" name="mark-hotel" value="" placeholder="4 / 5+" >
+                
+            </div>
+            <div class="form-group">
+                <label for="secteur-hotel">Id secteur</label>
+                <select class="form-control" id="secteur-hotel">
+                    <option value="0">Nord</option>
+                    <option value="1">Sud</option>
+                    <option value="2">Est</option>
+                    <option value="3">Ouest</option>
+                </select>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="add">Ajouter</button>
+        <button type="button" class="btn btn-danger" type="reset" data-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div> 
+ 
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="insertModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="insertModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form >
+            <div class="form-group">
+                        <label for="id-hotel">Id</label>
+                        <input type="number" class="form-control" id="id-h" name="id-hotel" value="">
+                    </div>
+            <div class="form-group">
+                <label for="name-hotel">Nom de l'hôtel</label>
+                <input type="text" class="form-control" id="name-hotel" name="name-hotel" value="" placeholder="Bakoya Hotel Resort & Spa">
+            </div>
+            <div class="form-group">
+                <label for="img-hotel">Image</label>
+                <input type="text" class="form-control" id="img-hotel" name="img-hotel" value="" >
+            </div>
+            <div class="form-group">
+                <label for="mark-hotel">Luxiosité de l'hôtel (en etoiles)</label>
+                <input type="number" class="form-control" id="mark-h" name="mark-hotel" value="" placeholder="4 / 5+" >
+                
+            </div>
+            <div class="form-group">
+                <label for="secteur-hotel">Id secteur</label>
+                <select class="form-control" id="secteur-hotel">
+                    <option value="0">Nord</option>
+                    <option value="1">Sud</option>
+                    <option value="2">Est</option>
+                    <option value="3">Ouest</option>
+                </select>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="add">Ajouter</button>
+        <button type="button" class="btn btn-danger" type="reset" data-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div> 
+ 
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+<script>
+$('#updateModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var id = button.data('id') // Extract info from data-* attributes
+  var name = button.data('name') // Extract info from data-* attributes
+  var img = button.data('img') // Extract info from data-* attributes
+  var etoiles = button.data('etoiles') // Extract info from data-* attributes
+  var id_secteur = button.data('name') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('Mise à jour des données de : ' + name)
+  modal.find('.modal-body #id-h').val(id);
+  modal.find('.modal-body #name-hotel').val(name);
+  modal.find('.modal-body #img-hotel').val(img);
+  modal.find('.modal-body #mark-h').val(etoiles);
+  modal.find('.modal-body #secteur-hotel').attr("value",id_secteur);
+})
+</script>
+</body>
+
+</html>

@@ -16,11 +16,11 @@
         <form class="col-md-4 offset-md-4">
                 <div class="form-group">
                         <label for="id-hotel">Id</label>
-                        <input type="number" class="form-control" id="id-hotel" name="id-hotel" value="">
+                        <input type="number" class="form-control" id="id-h" name="id-hotel" value="">
                     </div>
             <div class="form-group">
                 <label for="name-hotel">Nom de l'hôtel</label>
-                <input type="text" class="form-control" id="name-hotel" name="name-hotel" value="" placeholder="Bakoya Hotel Resort & Spa" required>
+                <input type="text" class="form-control" id="name-hotel" name="name-hotel" value="" placeholder="Bakoya Hotel Resort & Spa">
             </div>
             <div class="form-group">
                 <label for="img-hotel">Image</label>
@@ -28,8 +28,8 @@
             </div>
             <div class="form-group">
                 <label for="mark-hotel">Luxiosité de l'hôtel (en etoiles)</label>
-                <input type="number" class="form-control" id="mark-hotel" name="mark-hotel" value="" placeholder="4 / 5+" required>
-                <small id="mark-help" class="form-text text-muted">Entrez le nombre d'étoiles 1, 2, 3 etc...</small>
+                <input type="number" class="form-control" id="mark-h" name="mark-hotel" value="" placeholder="4 / 5+" >
+                
             </div>
             <div class="form-group">
                     <label for="secteur-hotel">Id secteur</label>
@@ -40,12 +40,13 @@
                       <option value="3">Ouest</option>
                     </select>
                   </div>
-            <div class="row">
-                <button class="btn btn-success" id="add">Ajouter</button>
-                <button class="btn btn-danger" type="reset">Annuler</button>
-            </div>
+
         </form>
-        
+        <div class="row">
+            <button class="btn btn-success" id="add">Ajouter</button>
+            <button class="btn btn-danger" type="reset">Annuler</button>
+        </div>
+        <span id='message'></span>
 
 
     <!-- Optional JavaScript -->
@@ -53,9 +54,10 @@
     <script
 			  src="https://code.jquery.com/jquery-3.3.1.min.js"
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			  crossorigin="anonymous"></script>
+              crossorigin="anonymous"></script>
+    <script src="../js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="../js/script.js"></script>
+    
   </body>
 </html>

@@ -2,10 +2,14 @@
 const express = require('express');
 const app = express();
 var port = 6002;
+var bodyParser = require('body-parser');
 // connexion a bdd
 var MongoClient = require('mongodb').MongoClient
     , assert = require('assert');
+// Connection URL
+var url = 'mongodb://localhost:27017/reservation';
 
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('static'));
 
 // utilisation du moteur de rendu ejs
@@ -20,9 +24,13 @@ app.get('/template', function (req, res) {
 });
 
 //afficher l'index
-app.get('/', function(req,res){
-    res.sendFile(__dirname+'/index.html')
-});
+// app.get('/', function(req,res){
+//     get_hotels(function (result) {
+//         res.render('index',{
+//             hotel: result
+//         });
+//     }) ;
+// });
 
 app.get('/login', function(req,res){
     res.sendFile(__dirname+'/formulaire-login.html')
@@ -57,15 +65,15 @@ function get_clients(cb){
 // sur la route /hotels , j'envoie une réponse qui fait un rendu
 // sur hotel qui se trouve dans views/hotels et je passe les data
 // que j'ai récupéré dans la fonction get_clients()
-app.get('/hotels', function (req, res) {
+app.get('/', function (req, res) {
     get_hotels(function(hotels){
-        console.log(hotels);
+        //console.log(hotels);
         res.render('hotel', {
             data: hotels
         });
         // res.send(hotels);
     });
-})
+});
 app.get('/get_hotels', function(req,res){
    
     // mongodb vers hotels
@@ -78,6 +86,28 @@ app.get('/get_hotels', function(req,res){
     //
 });
 
+app.post('/reserved', function (req, res) {
+    var nom = req.body.nom;
+    var dateArriver = req.body.dateArrive;
+    var dateDepart = req.body.dateDepart;
+    var hotel = req.body.hotel;
+    var id_hotel = req.body.id_hotel;
+    var insert = {id_hotel: id_hotel, date_debut: dateArriver, date_fin: dateDepart, nom: nom};
+    MongoClient.connect(url, function (err, database) {
+        if (err) throw err;
+        var dbo = database.db('reservation');
+        dbo.collection("reservations").insertOne(insert, function (err, data) {
+            if (err){
+                res.send("error");
+            }else {
+                res.send("success");
+            }
+            console.log("ajout réussi");
+
+        });
+        database.close();
+    })
+});
 function get_hotels(cb){
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
@@ -120,8 +150,7 @@ function get_secteurs(cb){
 
 }
 
-// Connection URL
-var url = 'mongodb://localhost:27017/reservation';
+
 
 // Use connect method to connect to the server
 MongoClient.connect(url, function (err, db) {
@@ -129,6 +158,61 @@ MongoClient.connect(url, function (err, db) {
     console.log("Connected successfully to bdd");
     db.close();
 });
+
+
+app.get('/admin/ajout-hotel', function (req, res) {
+    res.sendFile(__dirname + '/ajout-hotel.html')
+});
+
+
+// A REVOIR - ne récupère pas les données dans newvalues
+
+app.put('/update', function (req, res) {
+
+    var monid = parseInt(req.body.donnee1);
+    var name = req.body.donnee2;
+    var image = req.body.donnee3;
+    var mark = parseInt(req.body.donnee4);
+    var secteur = parseInt(req.body.donnee5);
+    // var myquery = { "id" : monid };
+    console.log(monid);
+
+    var newvalues =  { $set: { 'Nom': name, 'img': image, 'id_secteur': secteur, 'Nb_etoiles': mark } };
+    // console.log("/update =>  " + JSON.parse(newvalues));
+
+
+    MongoClient.connect(url, function (err, database) {
+        if (err) throw err;
+        var dbo = database.db("reservation");
+
+       //console.log(newvalues);
+        dbo.collection("hotels").updateOne({id : monid}, newvalues, function (err, result) {
+            // if (err) throw err;
+            if (err){
+                res.send('error');
+            }
+
+            res.send('ok');
+            console.log("1 document inserted");
+            database.close();
+
+        });
+
+    });
+    //on est gentil on repond
+    // res.send("toto");
+});
+
+app.get('/admin/hotels', function (req, res) {
+    get_hotels(function(hotels){
+        //console.log(hotels);
+        res.render('admin/index', {
+            hotels: hotels
+        });
+        // res.send(hotels);
+    });
+});
+
 
 app.listen(port, function(){
     console.log('the port is on')
