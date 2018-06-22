@@ -1,16 +1,12 @@
 $('document').ready(function () {
     // appel de la fonction pour ajout des etoiles automatiquement pour les hotels
     stars();
-    var port = 3009;
-    //var val1 = $('#id-h').val();
-    // var val2 = $('#name-hotel').val();
-    // var val3 = $('#img-hotel').val();
-    // var val4 = $('#mark-hotel').val();
-    // var val5 = $('#secteur-hotel').val();
+    var port = 3003;
+ 
 
-   // console.log("eee");
+  //Fonction pour modifier les données dans la database hotels
     $('#update').click(function () {
-        console.log("eee");
+       
         var val1 = $('#id-h').val();
         var val2 = $('#name-hotel').val();
         var val3 = $('#img-hotel').val();
@@ -32,6 +28,27 @@ $('document').ready(function () {
                 
                 $('#update_message').html('<div class="alert alert-success" role="alert">Données enregistrées !</div>');
 
+            }
+        });
+    });
+//Fonction pour ajouter un nouvel hôtel dans la database hotels
+    $('#ajouter').click(function (event) {  
+        var val1 = $('#insert-id-h').val();
+        var val2 = $('#insert-name-hotel').val();
+        var val3 = $('#insert-img-hotel').val();
+        var val4 = $('#insert-mark-h').val();
+        var val5 = $('#insert-secteur-hotel').val();   
+      
+      
+        $.ajax({
+            url: 'http://localhost:' + port + '/add',
+            type: 'POST',
+            data: { donnee1:val1, donnee2: val2, donnee3: val3, donnee4: val4, donnee5: val5 },
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (e) {
+                console.error("erreur :", e);
             }
         });
     });
