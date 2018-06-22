@@ -12,7 +12,7 @@ $('document').ready(function () {
     
     $('#add').click(function () {
         $.ajax({
-            url: 'http://localhost:4013/update',
+            url: 'http://localhost:6002/update',
             method: "PUT",
             data: { donnee1: val1, donnee2: val2, donnee3: val3, donnee4: val4, donnee5: val5 },
             success: function (data) {

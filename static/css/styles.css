@@ -1,6 +1,7 @@
 
 body {
     font-size: 17px;
+    font-family: 'ABeeZee', sans-serif;
 }
 
 .container-fluid {
@@ -8,6 +9,9 @@ body {
     padding-right: 0!important;
 }
 
+.title_page {
+    font-family: 'Courgette', cursive;
+}
  
 /*========================================
        HEADER

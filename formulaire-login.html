@@ -15,13 +15,13 @@
     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!--STYLE CSS DU SITE-->
-    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=ABeeZee|Julius+Sans+One|Rubik" rel="stylesheet"> 
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
 <body>
     <!--HEADER WITH MENU AND SLIDE-->
+    <!-- <% include partials/header.ejs %> -->
     <header class="container-fluid">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
@@ -36,7 +36,7 @@
                             <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="http://localhost:3012/hotels">Hotels</a>
+                            <a class="nav-link" href="http://localhost:3002/hotels">Hotels</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choississez votre secteurs</a>
@@ -54,6 +54,9 @@
     </header>  
     <div class="container-fluid p-5">
             <div class="container">
+                <div class="row col-md-12 justify-content-center">
+                    <h2 class="title_page">- Connexion -</h2>
+                </div>
                 <div class="row col-md-8 mx-auto mt-5 mb-5 bg-info p-3 text-white">
                     <div class="form-group col-md-6">
                         <label for="">Identifiant</label>
@@ -73,6 +76,7 @@
     
 
 <!--FOOTER -->
+<!-- <% include partials/footer.ejs %> -->
 <footer class="container-fluid bg-dark text-white">
     <div class="container">
         <div class="row pt-5 pb-5 mt-5">
