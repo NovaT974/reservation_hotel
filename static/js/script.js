@@ -17,9 +17,6 @@ $('document').ready(function () {
         console.log(val3);
         console.log(val4);
         console.log(val5);
-
-        
-    
         $.ajax({
             url: 'http://localhost:' + port + '/update',
             method: "PUT",
@@ -74,50 +71,51 @@ $('document').ready(function () {
         });
     });
 
-    $('#reserved').on('click', function (event) {
+    $('.reserver').on('click', function (event) {
         event.preventDefault();
-        var dateArriver = $('#arrive').val();
-        var dateDepart = $('#depart').val();
-        var nom = $('#nom').val();
-        var hotel = $('#selectHotel').val();
-        console.log(hotel);
-        var id_hotel = $('#selectHotel').find(':selected').data("id");
+        var id = $(this).attr("id");
+        console.log("bonsoir"+id);
+        var dateArriver = $('#arriver_'+id).val();
+        console.log(dateArriver);
+        var dateDepart = $('#depart_'+id).val();
+        console.log(dateDepart);
+        var nom = $('#nom_'+id).val();
+        console.log(nom);
+        var id_hotel = $(this).data("id");
         console.log(id_hotel);
         var url = "http://localhost:6002/reserved";
 
-        if(dateArriver && dateDepart && nom && hotel && id_hotel && url !== undefined) {
+        if(dateArriver && dateDepart && nom && id_hotel && url !== undefined) {
             $.post(url, {
                     dateArrive: dateArriver,
                     dateDepart: dateDepart,
                     nom: nom,
-                    hotel: hotel,
                     id_hotel: id_hotel
                 },
                 function (data, status) {
                     console.log(status);
                     if (data === "success") {
-                        $("#reset").trigger("click");
+                        $("#reset_"+id).trigger("click");
                         console.log("reussi");
-                        $('#status').append('<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+                        $('#status_'+id).append('<div class="alert alert-success alert-dismissible fade show" role="alert">' +
                             'Reservation réussi <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                             '<span aria-hidden="true">&times;</span></button></div>'
-                        )
+                        );
                     } else if (status === "error") {
-                        $('#status').append('<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
+                        $('#status_'+id).append('<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
                             'Reservation non réussi <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                             '<span aria-hidden="true">&times;</span></button></div>'
-                        )
+                        );
                         console.log("error");
                     }
-
                 }
             )
-
-        }else {
-            console.log("champs non rempli");
         }
     })
 });
+// function reserver(id){
+//     reservation();
+// }
 
 // fonction etoiles pour les hotels
 function stars(){
@@ -131,5 +129,5 @@ function stars(){
             affiche_nbetoile +="<i class='fas fa-star'></i>";
             $(this).html(affiche_nbetoile);
         }
-    })
+    });
 }

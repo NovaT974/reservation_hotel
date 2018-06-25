@@ -15,7 +15,51 @@
                         <div class="text-right">
                             <p>150 € / nuit</p>
                         </div>
-                        <a href="#" class="btn btn-primary">Réserver</a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<%= datas._id %>" data-id="<%= datas.id %>">Réserver</button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="<%= datas._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle"><%= datas.Nom %></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col-md-12" id="status_<%= datas.id %>"></div>
+                                    <form class="row col-md-12 mx-auto  pt-4 m-5 bg-form">
+                                        <div class="form-group col-md-6">
+                                            <label for="arrive">Date d'arrivé</label>
+                                            <input type="date" name="arrive" id="arriver_<%= datas.id %>" class="form-control" placeholder="" aria-describedby="helpId" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="depart">Date de départ</label>
+                                            <input type="date" name="depart" id="depart_<%= datas.id %>" class="form-control" placeholder="" aria-describedby="helpId" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="nom">Nom & Prénom </label>
+                                            <input type="texte" name="nom" id="nom_<%= datas.id %>" class="form-control" placeholder="" aria-describedby="helpId" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="carte_bancaire">Carte bancaire</label>
+                                            <input type="number" name="" id="carte_bancaire" class="form-control" placeholder="" aria-describedby="helpId" required>
+                                            <input type="hidden" value="" id = "id-client">
+
+                                        </div>
+                                        <div class="mb-3 ml-3">
+                                            <button type="reset" id="reset_<%= datas.id %>" style="visibility: hidden;">reset</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="<%= datas.id %>" class="btn btn-dark reserver"  data-id="<%= datas._id %>">Réserver</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
