@@ -41,7 +41,7 @@ app.get('/get_clients', function(req,res){
 
     //
     get_clients(function(clients){
-        console.log(clients);
+        //console.log(clients);
         res.send(clients);
     });
 
@@ -55,7 +55,7 @@ function get_clients(cb){
         var dbo = db.db("reservation");
         dbo.collection("clients").find({}).toArray(function (err, result) {
             if (err) throw err;
-            console.log(result);
+            //console.log(result);
             //res.send(result);
             cb(result);
             db.close();
@@ -75,6 +75,13 @@ app.get('/', function (req, res) {
         // res.send(hotels);
     });
 });
+// var test = get_hotels(function (result) {
+//     return result;
+// });
+
+app.get('/test', function (req,res) {
+
+});
 app.get('/get_hotels', function(req,res){
    
     // mongodb vers hotels
@@ -91,13 +98,14 @@ app.post('/reserved', function (req, res) {
     var nom = req.body.nom;
     var dateArriver = req.body.dateArrive;
     var dateDepart = req.body.dateDepart;
-    var hotel = req.body.hotel;
+    //var hotel = req.body.hotel;
     var id_hotel = req.body.id_hotel;
     var insert = {id_hotel: id_hotel, date_debut: dateArriver, date_fin: dateDepart, nom: nom};
     MongoClient.connect(url, function (err, database) {
         if (err) throw err;
         var dbo = database.db('reservation');
         dbo.collection("reservations").insertOne(insert, function (err, data) {
+            console.log(data);
             if (err){
                 res.send("error");
             }else {
@@ -109,13 +117,14 @@ app.post('/reserved', function (req, res) {
         database.close();
     })
 });
+
 function get_hotels(cb){
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         var dbo = db.db("reservation");
         dbo.collection("hotels").find({}).toArray(function (err, result) {
             if (err) throw err;
-            console.log(result);
+            //console.log(result);
             //res.send(result);
             cb(result);
             db.close();
@@ -129,20 +138,21 @@ app.get('/get_secteurs', function(req,res){
     // mongodb vers secteurs
     //
     get_secteurs(function(secteurs){
-        console.log(secteurs);
+        //console.log(secteurs);
         res.send(secteurs);
     });
     //
 });
 
 
+/* Récuperation des secteurs */
 function get_secteurs(cb){
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         var dbo = db.db("reservation");
         dbo.collection("secteurs").find({}).toArray(function (err, result) {
             if (err) throw err;
-            console.log(result);
+            //console.log(result);
             //res.send(result);
             cb(result);
             db.close();
@@ -185,8 +195,7 @@ app.get('/admin/ajout-hotel', function (req, res) {
 });
 
 
-//Éditer les données des hôtels
-
+// Route qui édite les données des hôtels
 app.put('/update', function (req, res) {
 
     var monid = parseInt(req.body.donnee1);
@@ -214,7 +223,7 @@ app.put('/update', function (req, res) {
     });
 });
 
-//Ajouter un nouvel hôtel
+// Route qui ajoute un hotel
 app.post('/add', function (req, res) {
 
     var monid = parseInt(req.body.donnee1);
@@ -242,8 +251,7 @@ app.post('/add', function (req, res) {
     // res.send("toto");
 });
 
-
-
+// Route qui affiche les hotels
 app.get('/admin/hotels', function (req, res) {
     get_hotels(function(hotels){
         //console.log(hotels);
@@ -254,7 +262,7 @@ app.get('/admin/hotels', function (req, res) {
     });
 });
 
-
+// Route de la page admin
 MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("reservation");
@@ -266,9 +274,8 @@ MongoClient.connect(url, function (err, db) {
         res.render('admin/index', {hotels:hotels,clients:clients,reservations:reservations});
     });
 });
-/**
- * Route del d'un doc via le formulaire 
- */
+
+// Route qui supprime un hotel en fonction de l'ID dans l'url 
 app.delete('/hotels/:_id', function (req, res) {
     const _id = req.params._id;
   

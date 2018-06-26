@@ -1,6 +1,6 @@
 .sidenav {
     height: 100%;
-    width: 260px;
+    /* width: 260px; */
     position: fixed;
     z-index: 1;
     top: 0;
@@ -10,6 +10,13 @@
     padding-top: 20px;
 }
 
+.card-body i{
+    font-size: 3rem;
+    color: #FFF;
+}
+.card-body{
+    font-weight: 800;
+}
 .sidenav a {
     padding: 26px 8px 6px 16px;
     text-decoration: none;
@@ -29,6 +36,7 @@
 
 h1{
     color:white;
+    /* font-family: 'Julius Sans One', sans-serif; */
 }
 
 .navbar{

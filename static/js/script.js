@@ -1,7 +1,7 @@
 $('document').ready(function () {
     // appel de la fonction pour ajout des etoiles automatiquement pour les hotels
     stars();
-    var port = 3003;
+    var port = 3009;
  
 
   //Fonction pour modifier les données dans la database hotels
@@ -98,12 +98,12 @@ $('document').ready(function () {
                         $("#reset_"+id).trigger("click");
                         console.log("reussi");
                         $('#status_'+id).append('<div class="alert alert-success alert-dismissible fade show" role="alert">' +
-                            'Reservation réussi <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                            'Votre Reservation du: '+ dateArriver +' au: '+ dateDepart +' a bien été confirmé <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                             '<span aria-hidden="true">&times;</span></button></div>'
                         );
                     } else if (status === "error") {
                         $('#status_'+id).append('<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
-                            'Reservation non réussi <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                            'Erreur lors de la reservation <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                             '<span aria-hidden="true">&times;</span></button></div>'
                         );
                         console.log("error");

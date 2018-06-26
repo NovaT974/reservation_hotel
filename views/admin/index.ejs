@@ -5,23 +5,33 @@
     <% include header.ejs %>
     <!-- Création du tableau des hotels -->
 
-   <table class="table w-75 mt-5 text-center">
-    <thead>
-      <tr>
-        <th scope="col">Hotels</th>
-        <th scope="col">Clients</th>
-        <th scope="col">Réservations</th>
-      </tr>
-    </thead>
-    <tbody>
-    <!-- Boucle d'ajout des hotels -->
-        <tr>  
-            <th class="text-center" scope="row"><%= hotels %></th>
-            <td class="text-center"><%= clients %></td>
-            <td class="text-center"><%= reservations %></td>
-        </tr>
-    </tbody>
-  </table>
+    <div class="container mt-5">
+        <div class="card-deck text-center mt-5">
+            <div class="card bg-info m-4">
+                <div class="card-body">
+                    <h5 class="card-title text-white">Nombre d'hotels</h5>
+                    <i class="fas fa-hotel"></i>
+                    <h1 class="card-text"><%= hotels %></h1>
+                </div>
+            </div>
+            <div class="card bg-danger m-4">
+                <div class="card-body">
+                    <h5 class="card-title text-white">Nombre de clients</h5>
+                    <i class="fas fa-user-tie"></i>
+                    <h1 class="card-text"><%= clients %></h1>
+                </div>
+            </div>
+            <div class="card bg-success m-4">
+                <div class="card-body">
+                    <h5 class="card-title text-white">Nombre de reservations</h5>
+                    <i class="fas fa-concierge-bell"></i>
+                    <h1 class="card-text"><%= reservations %></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+  
 <!-- ajout de la partie footer de la structure -->
     <% include footer.ejs %>
 </body>
