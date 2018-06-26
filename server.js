@@ -152,6 +152,21 @@ function get_secteurs(cb){
 }
 
 
+/* Récuperation des reservations */
+function get_reservations(cb){
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("reservation");
+        dbo.collection("reservations").find({}).toArray(function (err, result) {
+            if (err) throw err;
+            console.log(result);
+            //res.send(result);
+            cb(result);
+            db.close();
+        });
+    });
+}
+
 
 // Use connect method to connect to the server
 MongoClient.connect(url, function (err, db) {
@@ -160,6 +175,10 @@ MongoClient.connect(url, function (err, db) {
     db.close();
 });
 
+
+/**
+ * PARTIE ADMINISTRATION
+ */
 
 app.get('/admin/ajout-hotel', function (req, res) {
     res.sendFile(__dirname + '/ajout-hotel.html')
@@ -182,14 +201,12 @@ app.put('/update', function (req, res) {
     MongoClient.connect(url, function (err, database) {
         if (err) throw err;
         var dbo = database.db("reservation");
-
        //console.log(newvalues);
         dbo.collection("hotels").updateOne({id : monid}, newvalues, function (err, result) {
             // if (err) throw err;
             if (err){
                 res.send('error');
             }
-
             res.send('ok');
             console.log("1 document inserted");
             database.close();
@@ -237,13 +254,16 @@ app.get('/admin/hotels', function (req, res) {
     });
 });
 
-app.get('/admin/', function (req, res) {
-    get_hotels(function(hotels){
-        //console.log(hotels);
-        res.render('admin/index', {
-            hotels: hotels
-        });
-        // res.send(hotels);
+
+MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("reservation");
+    app.get('/admin', async function (req, res) {
+         hotels = await dbo.collection("hotels").count() ;
+         clients = await dbo.collection("clients").count();
+         reservations = await dbo.collection("reservations").count();
+        console.log(hotels);
+        res.render('admin/index', {hotels:hotels,clients:clients,reservations:reservations});
     });
 });
 /**

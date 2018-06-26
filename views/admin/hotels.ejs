@@ -13,6 +13,7 @@
         <th scope="col">#</th>
         <th scope="col">id</th>
         <th scope="col">Images</th>
+        <th scope="col">Rank</th>
         <th scope="col">Modifier</th>
         <th scope="col">Supprimer</th>
       </tr>
@@ -24,6 +25,7 @@
                 <th class="text-left" scope="row"><%= hotel.id %></th>
                 <td class="text-left"><%= hotel.Nom %></td>
                 <td class="text-left"><%= hotel.img %></td>
+                <td class="text-center"><%= hotel.Nb_etoiles %></td>
                 <td><a data-toggle="modal" data-target="#updateModal" data-objid="<%= hotel._id %>" data-id="<%= hotel.id %>" data-name="<%= hotel.Nom %>" data-img="<%= hotel.img%>"  data-etoiles="<%= hotel.Nb_etoiles%>"  data-secteur="<%= hotel.id_secteur%>"><i class="far fa-edit"></i></a></td>
                 <td><a class="delete" data-objid="<%= hotel._id %>"><i class="far fa-trash-alt"></i></a></td>
             </tr>
